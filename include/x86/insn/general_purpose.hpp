@@ -1,0 +1,18 @@
+#pragma once
+
+#include "x86/insn/general_purpose/data_transfer.hpp"
+#include "x86/insn/general_purpose/binary_arithmetic.hpp"
+#include "x86/insn/general_purpose/decimal_arithmetic.hpp"
+#include "x86/insn/general_purpose/logical_instructions.hpp"
+#include "x86/insn/general_purpose/shift_and_rotate.hpp"
+#include "x86/insn/general_purpose/bit_and_byte.hpp"
+#include "x86/insn/general_purpose/control_transfer.hpp"
+#include "x86/insn/general_purpose/string.hpp"
+#include "x86/insn/general_purpose/io.hpp"
+#include "x86/insn/general_purpose/enter_and_leave.hpp"
+#include "x86/insn/general_purpose/flag_control.hpp"
+#include "x86/insn/general_purpose/segment_register.hpp"
+#include "x86/insn/general_purpose/miscellaneous.hpp"
+#include "x86/insn/general_purpose/user_mode_extended_state.hpp"
+#include "x86/insn/general_purpose/random_number_generator.hpp"
+#include "x86/insn/general_purpose/bmi.hpp"
