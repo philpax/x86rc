@@ -32,7 +32,9 @@ void start(x86::thread_state* ts, x86::memory_view* mv) {
 	and_(&ts->esi, 0x7FFF);
 	mov(mv, x86::mem(0x8B8434, 4), ts->esi);
 	cmp(&ts->eflags, ts->ecx, 0x2);
-	if (true) { goto loc_75BD27; }
+	if (ts->eflags.zero) {
+        goto loc_75BD27;
+    }
 	or_(&ts->esi, 0x8000);
 	mov(mv, x86::mem(0x8B8434, 4), ts->esi);
 
@@ -44,31 +46,43 @@ loc_75BD27:
 	push(mv, &ts->esp, ts->edi);
 	game::GetModuleHandleA(ts, mv);
 	cmp(mv, &ts->eflags, x86::mem(ts->eax, 2), 0x5A4D);
-	if (true) { goto loc_75BD60; }
+	if (!ts->eflags.zero) {
+        goto loc_75BD60;
+    }
 	mov(mv, &ts->ecx, x86::mem(ts->eax + 0x3C, 4));
 	add(&ts->ecx, ts->eax);
 	cmp(mv, &ts->eflags, x86::mem(ts->ecx, 4), 0x4550);
-	if (true) { goto loc_75BD60; }
+	if (!ts->eflags.zero) {
+        goto loc_75BD60;
+    }
 	movzx(mv, &ts->eax, x86::mem(ts->ecx + 0x18, 2));
 	cmp(&ts->eflags, ts->eax, 0x10B);
-	if (true) { goto loc_75BD78; }
+	if (ts->eflags.zero) {
+        goto loc_75BD78;
+    }
 	cmp(&ts->eflags, ts->eax, 0x20B);
-	if (true) { goto loc_75BD65; }
+	if (ts->eflags.zero) {
+        goto loc_75BD65;
+    }
 
 loc_75BD60:
 	mov(mv, x86::mem(ts->ebp - 0x1C, 4), ts->edi);
-	if (true) { goto loc_75BD8C; }
+	goto loc_75BD8C;
 
 loc_75BD65:
 	cmp(mv, &ts->eflags, x86::mem(ts->ecx + 0x84, 4), 0xE);
-	if (true) { goto loc_75BD60; }
+	if (ts->eflags.carry || ts->eflags.zero) {
+        goto loc_75BD60;
+    }
 	xor_(&ts->eax, ts->eax);
 	cmp(mv, &ts->eflags, x86::mem(ts->ecx + 0xF8, 4), ts->edi);
-	if (true) { goto loc_75BD86; }
+	goto loc_75BD86;
 
 loc_75BD78:
 	cmp(mv, &ts->eflags, x86::mem(ts->ecx + 0x74, 4), 0xE);
-	if (true) { goto loc_75BD60; }
+	if (ts->eflags.carry || ts->eflags.zero) {
+        goto loc_75BD60;
+    }
 	xor_(&ts->eax, ts->eax);
 	cmp(mv, &ts->eflags, x86::mem(ts->ecx + 0xE8, 4), ts->edi);
 
@@ -81,14 +95,18 @@ loc_75BD8C:
 	game::__heap_init(ts, mv);
 	pop(mv, &ts->esp, ts->ecx);
 	test(&ts->eflags, ts->eax, ts->eax);
-	if (true) { goto loc_75BDA0; }
+	if (!ts->eflags.zero) {
+        goto loc_75BDA0;
+    }
 	push(mv, &ts->esp, 0x1C);
 	game::_fast_error_exit(ts, mv);
 
 loc_75BDA0:
 	game::sub_762018(ts, mv);
 	test(&ts->eflags, ts->eax, ts->eax);
-	if (true) { goto loc_75BDB1; }
+	if (!ts->eflags.zero) {
+        goto loc_75BDB1;
+    }
 	push(mv, &ts->esp, 0x10);
 	game::_fast_error_exit(ts, mv);
 
@@ -97,7 +115,9 @@ loc_75BDB1:
 	mov(mv, x86::mem(ts->ebp - 0x4, 4), ts->edi);
 	game::__ioinit(ts, mv);
 	test(&ts->eflags, ts->eax, ts->eax);
-	if (true) { goto loc_75BDCA; }
+	if (ts->eflags.sign == ts->eflags.overflow) {
+        goto loc_75BDCA;
+    }
 	push(mv, &ts->esp, 0x1B);
 	game::__amsg_exit(ts, mv);
 
@@ -108,14 +128,18 @@ loc_75BDCA:
 	mov(mv, x86::mem(0x8B8418, 4), ts->eax);
 	game::sub_7619C1(ts, mv);
 	test(&ts->eflags, ts->eax, ts->eax);
-	if (true) { goto loc_75BDF0; }
+	if (ts->eflags.sign == ts->eflags.overflow) {
+        goto loc_75BDF0;
+    }
 	push(mv, &ts->esp, 0x8);
 	game::__amsg_exit(ts, mv);
 
 loc_75BDF0:
 	game::__setenvp(ts, mv);
 	test(&ts->eflags, ts->eax, ts->eax);
-	if (true) { goto loc_75BE01; }
+	if (ts->eflags.sign == ts->eflags.overflow) {
+        goto loc_75BE01;
+    }
 	push(mv, &ts->esp, 0x9);
 	game::__amsg_exit(ts, mv);
 
@@ -123,7 +147,9 @@ loc_75BE01:
 	game::sub_75D45B(ts, mv);
 	mov(mv, x86::mem(ts->ebp - 0x20, 4), ts->eax);
 	cmp(&ts->eflags, ts->eax, ts->edi);
-	if (true) { goto loc_75BE14; }
+	if (ts->eflags.zero) {
+        goto loc_75BE14;
+    }
 	push(mv, &ts->esp, ts->eax);
 	game::__amsg_exit(ts, mv);
 
@@ -138,13 +164,15 @@ loc_75BE14:
 	mov(&ts->esi, ts->eax);
 	mov(mv, x86::mem(ts->ebp - 0x24, 4), ts->esi);
 	cmp(mv, &ts->eflags, x86::mem(ts->ebp - 0x1C, 4), ts->edi);
-	if (true) { goto loc_75BE43; }
+	if (!ts->eflags.zero) {
+        goto loc_75BE43;
+    }
 	push(mv, &ts->esp, ts->esi);
 	game::_exit(ts, mv);
 
 loc_75BE43:
 	game::__cexit(ts, mv);
-	if (true) { goto loc_75BE75; }
+	goto loc_75BE75;
 
 loc_75BE4A:
 	mov(mv, &ts->eax, x86::mem(ts->ebp - 0x14, 4));
@@ -162,7 +190,9 @@ loc_75BE5E:
 	mov(mv, &ts->esp, x86::mem(ts->ebp - 0x18, 4));
 	mov(mv, &ts->esi, x86::mem(ts->ebp - 0x28, 4));
 	cmp(mv, &ts->eflags, x86::mem(ts->ebp - 0x1C, 4), 0x0);
-	if (true) { goto loc_75BE70; }
+	if (!ts->eflags.zero) {
+        goto loc_75BE70;
+    }
 	push(mv, &ts->esp, ts->esi);
 	game::__exit(ts, mv);
 

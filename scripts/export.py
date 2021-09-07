@@ -232,12 +232,58 @@ def itype_to_cpp(itype):
     return cmd
 
 
+def generate_control_flow(insn, ops):
+    if insn.itype == MNEMONIC_TO_ITYPE["jmp"]:
+        return f"goto {label_from_ea(ops[0].addr)};"
+    else:
+        cond = ""
+        if insn.itype == MNEMONIC_TO_ITYPE['jo']:
+            cond = 'ts->eflags.overflow'
+        elif insn.itype == MNEMONIC_TO_ITYPE['jno']:
+            cond = '!ts->eflags.overflow'
+        elif insn.itype == MNEMONIC_TO_ITYPE['js']:
+            cond = 'ts->eflags.sign'
+        elif insn.itype == MNEMONIC_TO_ITYPE['jns']:
+            cond = '!ts->eflags.sign'
+        elif insn.itype == MNEMONIC_TO_ITYPE['je'] or insn.itype == MNEMONIC_TO_ITYPE['jz']:
+            cond = 'ts->eflags.zero'
+        elif insn.itype == MNEMONIC_TO_ITYPE['jne'] or insn.itype == MNEMONIC_TO_ITYPE['jnz']:
+            cond = '!ts->eflags.zero'
+        elif insn.itype == MNEMONIC_TO_ITYPE['jb'] or insn.itype == MNEMONIC_TO_ITYPE['jnae'] or insn.itype == MNEMONIC_TO_ITYPE['jc']:
+            cond = 'ts->eflags.carry'
+        elif insn.itype == MNEMONIC_TO_ITYPE['jnb'] or insn.itype == MNEMONIC_TO_ITYPE['jae'] or insn.itype == MNEMONIC_TO_ITYPE['jnc']:
+            cond = '!ts->eflags.carry'
+        elif insn.itype == MNEMONIC_TO_ITYPE['jbe'] or insn.itype == MNEMONIC_TO_ITYPE['jna']:
+            cond = 'ts->eflags.carry || ts->eflags.zero'
+        elif insn.itype == MNEMONIC_TO_ITYPE['ja'] or insn.itype == MNEMONIC_TO_ITYPE['jnbe']:
+            cond = '!ts->eflags.carry && !ts->eflags.zero'
+        elif insn.itype == MNEMONIC_TO_ITYPE['jl'] or insn.itype == MNEMONIC_TO_ITYPE['jnge']:
+            cond = 'ts->eflags.sign != ts->eflags.overflow'
+        elif insn.itype == MNEMONIC_TO_ITYPE['jge'] or insn.itype == MNEMONIC_TO_ITYPE['jnl']:
+            cond = 'ts->eflags.sign == ts->eflags.overflow'
+        elif insn.itype == MNEMONIC_TO_ITYPE['jle'] or insn.itype == MNEMONIC_TO_ITYPE['jng']:
+            cond = 'ts->eflags.zero || (ts->eflags.sign != ts->eflags.overflow)'
+        elif insn.itype == MNEMONIC_TO_ITYPE['jg'] or insn.itype == MNEMONIC_TO_ITYPE['jnle']:
+            cond = 'ts->eflags.zero && (ts->eflags.sign == ts->eflags.overflow)'
+        elif insn.itype == MNEMONIC_TO_ITYPE['jp'] or insn.itype == MNEMONIC_TO_ITYPE['jpe']:
+            cond = 'ts->eflags.parity'
+        elif insn.itype == MNEMONIC_TO_ITYPE['jnp'] or insn.itype == MNEMONIC_TO_ITYPE['jpo']:
+            cond = '!ts->eflags.parity'
+        elif insn.itype == MNEMONIC_TO_ITYPE['jcxz']:
+            cond = 'ts->cx == 0'
+        elif insn.itype == MNEMONIC_TO_ITYPE['jecxz']:
+            cond = 'ts->ecx == 0'
+        else:
+            raise NotImplementedError
+
+        return f"if ({cond}) {{\n        goto {label_from_ea(ops[0].addr)};\n    }}"
+
+
 def generate_instruction(ea):
     insn = idaapi.insn_t()
     idaapi.decode_insn(insn, ea)
 
     ops = [op for op in insn.ops if op.type != ida_ua.o_void]
-    extra_ops = []
     category = ITYPE_TO_CATEGORY[insn.itype]
 
     if category in (
@@ -247,6 +293,7 @@ def generate_instruction(ea):
         InstructionCategory.STACK,
     ):
         cmd = itype_to_cpp(insn.itype)
+        extra_ops = []
         insert_mv = False
 
         if any(
@@ -272,8 +319,7 @@ def generate_instruction(ea):
         )
         return f"{cmd}({args});"
     elif category == InstructionCategory.CONTROL_FLOW:
-        cond = "true"
-        return f"if ({cond}) {{ goto {label_from_ea(ops[0].addr)}; }}"
+        return generate_control_flow(insn, ops)
     elif category == InstructionCategory.CALL:
         return f"game::{label_from_ea(ops[0].addr)}(ts, mv);"
     else:
