@@ -1,5 +1,6 @@
 #include <memory>
 
+#include "game/segments/text.hpp"
 #include "game/segments/data.hpp"
 #include "game/segments/rdata.hpp"
 #include "game/segments/seg4.hpp"
@@ -16,6 +17,14 @@ int main(int argc, char** argv) {
     auto memory_view = std::make_unique<x86::memory_view>();
 
     // map in segments
+    {
+        // The text segment is currently necessary as the additional state associated
+        // with functions (jump tables, etc) are currently not captured. It'd be great
+        // to get rid of this at some point!
+        namespace text = game::segments::text;
+        memory_view->map(".text", text::base_address, text::data.size());
+        memory_view->write(text::base_address, text::data);
+    }
     {
         namespace data = game::segments::data;
         memory_view->map(".data", data::base_address, data::data.size());

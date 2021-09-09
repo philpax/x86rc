@@ -64,6 +64,14 @@ struct thread_state {
     std::array<mm_reg, 8> mm;
     std::array<xmm_reg, 8> xmm;
 
+    struct {
+        // note: consider supporting the higher precision modes here
+        std::array<f32, 8> regs;
+        x86::x87_control_word control;
+        x86::x87_status_reg status;
+        x86::x87_tag_word tag;
+    } fp;
+
     thread_state();
     UTIL_DISABLE_COPY(thread_state);
 };
