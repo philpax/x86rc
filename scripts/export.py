@@ -8,11 +8,14 @@ import ida_nalt
 import os
 import ctypes
 import textwrap
+import re
 
 from enum import Enum
 
+GENERATE_APPLICATION_CODE = True
 GENERATE_STUBS = False
 GENERATE_SEGMENTS = False
+GENERATE_INSTRUCTION_FAKES = True
 
 BASE_DIRECTORY = os.path.abspath(
     os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
@@ -236,25 +239,57 @@ SUFFIX_ITYPE = {}
 SUFFIX_ITYPE[MNEMONIC_TO_ITYPE["and"]] = True
 SUFFIX_ITYPE[MNEMONIC_TO_ITYPE["or"]] = True
 SUFFIX_ITYPE[MNEMONIC_TO_ITYPE["xor"]] = True
+SUFFIX_ITYPE[MNEMONIC_TO_ITYPE["int"]] = True
+SUFFIX_ITYPE[MNEMONIC_TO_ITYPE["not"]] = True
+
+seen_names = {}
+def sanitize_name(name, ea):
+    demangled_name = idc.demangle_name(name, idc.get_inf_attr(INF_SHORT_DN))
+    if demangled_name != None:
+        name = demangled_name
+
+    name = (
+        re.sub("[:\(\) `'~,<>\?@]", "_", name)
+        .replace("*", "P")
+        .replace("&", "R")
+        .replace(" ", "_")
+    )
+
+    name_result = seen_names.get(name)
+    if name_result == None:
+        # no previous EA for this name, save the name
+        seen_names[name] = ea
+    elif name_result != ea:
+        # there's another result for this EA, suffix this function
+        name = f"{name}_{ea:X}"
+
+    return name
 
 
 def label_from_ea(ea):
-    ret = ida_name.get_ea_name(ea)
-    if ret == "":
+    name = ida_name.get_ea_name(ea)
+    if name == "":
         return None
 
-    return ret
+    return sanitize_name(name, ea)
 
 
 def get_func_name(ea):
     import re
 
+    func = ida_funcs.get_func(ea)
+    if func == None:
+        return None
+
+    if func.start_ea != ea:
+        return None
+
     name = idc.get_func_name(ea)
-    demangled_name = idc.demangle_name(name, idc.get_inf_attr(INF_SHORT_DN))
-    if demangled_name != None:
-        name = demangled_name
-    name = re.sub("[:\(\) `'~,<>\?@]", "_", name).replace("*", "P").replace("&", "R").replace(" ", "_")
-    return name
+    if len(name) == 0:
+        return None
+
+    return sanitize_name(name, ea)
+
 
 def operand_size(op):
     # courtesy https://reverseengineering.stackexchange.com/a/22695
@@ -311,10 +346,13 @@ def generate_operand(op):
     if isinstance(op, str):
         return op
 
+    size = operand_size(op) * 8
+    type_cast = f"reg{size}"
+
     if op.type == ida_ua.o_void:
         pass
     elif op.type == ida_ua.o_reg:
-        return f"ts->{operand_reg(op)}"
+        return f"x86::{type_cast}(ts->{operand_reg(op)})"
     elif op.type == ida_ua.o_mem:
         return f"x86::mem(0x{op.addr:X}, {operand_size(op)})"
     elif op.type == ida_ua.o_phrase:
@@ -322,7 +360,7 @@ def generate_operand(op):
     elif op.type == ida_ua.o_displ:
         return operand_decode_memory_ref(op)
     elif op.type == ida_ua.o_imm:
-        return f"0x{op.value:X}"
+        return f"x86::{type_cast}(0x{op.value:X})"
     elif op.type == ida_ua.o_far:
         return f"0x{op.addr:X}"
     elif op.type == ida_ua.o_near:
@@ -338,7 +376,12 @@ def generate_operands_string(ops, extra_ops, mutates_dst):
     op_strs = [generate_operand(op) for op in ops]
     if mutates_dst:
         if len(ops) > 0 and not isinstance(ops[0], str) and ops[0].type == ida_ua.o_reg:
-            op_strs[0] = "&" + op_strs[0]
+            first_op = op_strs[0]
+            # remove the register wrapping around this, we can be sure it's the right type
+            re_match = re.search(r'\((.*?)\)', first_op)
+            if re_match != None:
+                first_op = re_match.group(1)
+            op_strs[0] = "&" + first_op
 
     return ", ".join([generate_operand(op) for op in extra_ops] + op_strs)
 
@@ -352,9 +395,12 @@ def itype_to_cpp(itype):
 
 def generate_control_flow(insn, ops):
     if insn.itype == MNEMONIC_TO_ITYPE["jmp"]:
-        return f"goto {label_from_ea(ops[0].addr)};"
+        name = get_func_name(ops[0].addr)
+        if name == None:
+            name = label_from_ea(ops[0].addr)
+        return f"goto {name};"
     if insn.itype == MNEMONIC_TO_ITYPE["jmpni"]:
-        return f"jmp({generate_operands_string(ops, [], False)});"
+        return f"jmp(ts, mv, {generate_operands_string(ops, [], False)});"
     else:
         cond = ""
         if insn.itype == MNEMONIC_TO_ITYPE["jo"]:
@@ -470,8 +516,6 @@ def generate_instruction(ea):
             extra_ops.insert(0, "&ts->esp")
             insert_mv = True
         elif category == InstructionCategory.FLOATING_POINT:
-            # if len(ops) > 0:
-            #     ops.pop(0)
             extra_ops.insert(0, "&ts->fp")
 
         if insert_mv:
@@ -506,21 +550,28 @@ def process_function(f, fva):
     for bb in flowchart:
         func = idaapi.get_func(bb.start_ea)
 
+        generated_label = False
         label_name = label_from_ea(bb.start_ea)
         if label_name != None:
             if not first and not (bb.start_ea in (func.start_ea, func.end_ea)):
                 f.write("\n")
                 f.write(f"{label_name}:\n")
+                generated_label = True
 
+        generated_code = False
         for ea in idautils.Heads(bb.start_ea, bb.end_ea):
             f.write(f"\t{generate_instruction(ea)}\n")
+            generated_code = True
+
+        if generated_label and not generated_code:
+            f.write("\tUNEXPECTED_EXECUTION();\n")
+
 
         first = False
     f.write("}\n")
 
 
 def generate_application_code():
-    # start_function = idaapi.get_name_ea(0, "start")
     chunk_interval = 0x50_000
 
     functions = list(idautils.Functions())
@@ -563,7 +614,11 @@ def generate_application_code():
 
         # using textual replacement because dedent craps out if not all lines
         # share the same indent
-        f.write(textwrap.dedent(template).replace("$function_decls", function_decls).replace("$function_entries", function_entries))
+        f.write(
+            textwrap.dedent(template)
+            .replace("$function_decls", function_decls)
+            .replace("$function_entries", function_entries)
+        )
 
     max_function = max(functions)
     for chunk_start in range(min(functions), max_function, chunk_interval):
@@ -697,8 +752,144 @@ def generate_segments():
             f.write(textwrap.dedent(template))
 
 
-generate_application_code()
+def generate_type_string(ops, extra_ops, mutates_dst):
+    def operand_to_type(op):
+        if isinstance(op, str):
+            return op
+
+        size = operand_size(op) * 8
+
+        if op.type == ida_ua.o_void:
+            pass
+        elif op.type == ida_ua.o_reg:
+            return f"x86::reg{size}"
+        elif op.type == ida_ua.o_mem:
+            return f"x86::mem"
+        elif op.type == ida_ua.o_phrase:
+            return f"x86::mem"
+        elif op.type == ida_ua.o_displ:
+            return f"x86::mem"
+        elif op.type == ida_ua.o_imm:
+            return f"x86::reg{size}"
+        elif op.type == ida_ua.o_far:
+            return f"x86::reg{size}"
+        elif op.type == ida_ua.o_near:
+            return f"x86::reg{size}"
+        elif op.type == ida_ua.o_idpspec3:
+            return f"x86::fp_index"
+        else:
+            raise NotImplementedError("invalid operand type:", op.type)
+
+    # hack: treat first operand as destination
+    op_strs = [operand_to_type(op) for op in ops]
+    if mutates_dst:
+        if len(ops) > 0 and not isinstance(ops[0], str) and ops[0].type == ida_ua.o_reg:
+            op_strs[0] += "*"
+    op_strs = [op + f" _{idx}" for (idx, op) in enumerate(op_strs)]
+
+    return [operand_to_type(op) for op in extra_ops] + op_strs
+
+
+def make_instruction_representation(ea):
+    insn = idaapi.insn_t()
+    idaapi.decode_insn(insn, ea)
+
+    ops = [op for op in insn.ops if op.type != ida_ua.o_void]
+    category = ITYPE_TO_CATEGORY[insn.itype]
+
+    if category in (
+        InstructionCategory.STANDARD,
+        InstructionCategory.COMPARISON,
+        InstructionCategory.COMPARISON_EXTRACT,
+        InstructionCategory.STACK,
+        InstructionCategory.FLOATING_POINT,
+    ):
+        cmd = itype_to_cpp(insn.itype)
+        extra_ops = []
+        insert_mv = False
+
+        if any(
+            (op.type in (ida_ua.o_mem, ida_ua.o_phrase, ida_ua.o_displ) for op in ops)
+        ):
+            insert_mv = True
+
+        if category == InstructionCategory.COMPARISON:
+            extra_ops.insert(0, "x86::eflags_reg* eflags")
+        if category == InstructionCategory.COMPARISON_EXTRACT:
+            extra_ops.insert(0, "x86::eflags_reg eflags")
+        elif category == InstructionCategory.STACK:
+            extra_ops.insert(0, "x86::reg32* esp")
+            insert_mv = True
+        elif category == InstructionCategory.FLOATING_POINT:
+            extra_ops.insert(0, "x86::thread_state::fp_state* fp")
+
+        if insert_mv:
+            extra_ops.insert(0, "x86::memory_view* mv")
+
+        return (
+            cmd,
+            generate_type_string(
+                ops, extra_ops, category in MUTATE_DESTINATION_CATEGORIES
+            ),
+        )
+    elif category == InstructionCategory.CONTROL_FLOW:
+        return None
+    elif category == InstructionCategory.CALL:
+        return None
+    else:
+        raise NotImplementedError
+
+
+def generate_instruction_fakes():
+    import ida_funcs
+
+    with open(
+        os.path.join(BASE_DIRECTORY, "include", "x86", "insn", "all.hpp"), "w"
+    ) as f:
+        raw_reps = [
+            ("call", ["x86::thread_state* ts", "x86::memory_view* mv", "x86::mem _0"]),
+            ("call", ["x86::thread_state* ts", "x86::memory_view* mv", "x86::reg32 _0"]),
+            ("jmp", ["x86::thread_state* ts", "x86::memory_view* mv", "x86::mem _0"]),
+        ]
+        for function in idautils.Functions():
+            func = ida_funcs.get_func(function)
+            for ea in idautils.Heads(func.start_ea, func.end_ea):
+                rep = make_instruction_representation(ea)
+                if rep != None:
+                    raw_reps.append(rep)
+
+        reps = set()
+        for rep in raw_reps:
+            reps.add(
+                f"inline void {rep[0]}({', '.join(rep[1])}) {{\n    INSN_UNIMPLEMENTED();\n}}"
+            )
+
+        reps = list(reps)
+        reps.sort()
+
+        template = f"""\
+        // clang-format off
+        #pragma once
+
+        #include "util.hpp"
+        #include "x86/defs.hpp"
+        #include "x86/thread_state.hpp"
+        #include "x86/memory_view.hpp"
+
+        namespace x86::insn {{
+
+        """
+        f.write(textwrap.dedent(template))
+        for rep in reps:
+            f.write(rep + "\n")
+        f.write("\n\n}} // namespace x86::insn\n")
+
+
+if GENERATE_APPLICATION_CODE:
+    generate_application_code()
 if GENERATE_STUBS:
     generate_stubs()
 if GENERATE_SEGMENTS:
     generate_segments()
+if GENERATE_INSTRUCTION_FAKES:
+    generate_instruction_fakes()

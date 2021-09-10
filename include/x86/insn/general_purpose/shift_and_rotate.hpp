@@ -6,12 +6,5 @@
 
 namespace x86::insn {
 
-inline void shl(reg32* dst, usize src) {
-    INSN_UNIMPLEMENTED();
-}
-
-inline void shr(reg32* dst, usize src) {
-    INSN_UNIMPLEMENTED();
-}
 
 }

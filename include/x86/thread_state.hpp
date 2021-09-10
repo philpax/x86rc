@@ -47,10 +47,22 @@ struct thread_state {
         };
         reg32 edx;
     };
-    reg32 esi;
-    reg32 edi;
-    reg32 ebp;
-    reg32 esp;
+    union {
+        reg16 si;
+        reg32 esi;
+    };
+    union {
+        reg16 di;
+        reg32 edi;
+    };
+    union {
+        reg16 bp;
+        reg32 ebp;
+    };
+    union {
+        reg16 sp;
+        reg32 esp;
+    };
 
     eflags_reg eflags;
 
@@ -61,16 +73,42 @@ struct thread_state {
     reg16 gs;
     reg16 ss;
 
-    std::array<mm_reg, 8> mm;
-    std::array<xmm_reg, 8> xmm;
+    union {
+        struct {
+            mm_reg mm0;
+            mm_reg mm1;
+            mm_reg mm2;
+            mm_reg mm3;
+            mm_reg mm4;
+            mm_reg mm5;
+            mm_reg mm6;
+            mm_reg mm7;
+        };
+        std::array<mm_reg, 8> mm;
+    };
+    union {
+        struct {
+            xmm_reg xmm0;
+            xmm_reg xmm1;
+            xmm_reg xmm2;
+            xmm_reg xmm3;
+            xmm_reg xmm4;
+            xmm_reg xmm5;
+            xmm_reg xmm6;
+            xmm_reg xmm7;
+        };
+        std::array<xmm_reg, 8> xmm;
+    };
 
-    struct {
+    struct fp_state {
         // note: consider supporting the higher precision modes here
         std::array<f32, 8> regs;
         x86::x87_control_word control;
         x86::x87_status_reg status;
         x86::x87_tag_word tag;
-    } fp;
+    };
+
+    fp_state fp;
 
     thread_state();
     UTIL_DISABLE_COPY(thread_state);

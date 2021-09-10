@@ -6,21 +6,8 @@
 
 namespace x86 {
 
-using ptr = uint32_t;
-using usize = uint32_t;
-using isize = int32_t;
-
-using reg8 = uint8_t;
-using reg16 = uint16_t;
-using reg32 = usize;
-
 using f32 = float;
 using f64 = double;
-
-struct thread_state;
-class memory_view;
-
-using function = void(x86::thread_state*, x86::memory_view*);
 
 union mm_reg {
     uint8_t _8[8];
@@ -39,6 +26,22 @@ union xmm_reg {
     f64 _64f[2];
 };
 static_assert(sizeof(xmm_reg) == 16);
+
+using ptr = uint32_t;
+using usize = uint32_t;
+using isize = int32_t;
+
+using reg8 = uint8_t;
+using reg16 = uint16_t;
+using reg32 = usize;
+using reg64 = uint64_t;
+using reg128 = xmm_reg;
+
+struct thread_state;
+class memory_view;
+
+using function = void(x86::thread_state*, x86::memory_view*);
+
 
 union eflags_reg {
     struct {

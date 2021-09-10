@@ -6,8 +6,4 @@
 
 namespace x86::insn {
 
-inline void lea(memory_view* mv, reg32* dst, mem src) {
-    INSN_UNIMPLEMENTED();
-}
-
 }

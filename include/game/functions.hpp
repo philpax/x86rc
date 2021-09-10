@@ -495,7 +495,7 @@ void sub_410010(x86::thread_state*, x86::memory_view*);
 void sub_410030(x86::thread_state*, x86::memory_view*);
 void sub_410040(x86::thread_state*, x86::memory_view*);
 void sub_410120(x86::thread_state*, x86::memory_view*);
-void std__ios_base___ios_base_void_(x86::thread_state*, x86::memory_view*);
+void std__ios_base___ios_base_void__4101E0(x86::thread_state*, x86::memory_view*);
 void sub_4102B0(x86::thread_state*, x86::memory_view*);
 void std__strstreambuf___strstreambuf_void_(x86::thread_state*, x86::memory_view*);
 void sub_410420(x86::thread_state*, x86::memory_view*);
@@ -607,7 +607,7 @@ void sub_415DD0(x86::thread_state*, x86::memory_view*);
 void sub_415F80(x86::thread_state*, x86::memory_view*);
 void sub_416100(x86::thread_state*, x86::memory_view*);
 void sub_416120(x86::thread_state*, x86::memory_view*);
-void std__ios_base___ios_base_void_(x86::thread_state*, x86::memory_view*);
+void std__ios_base___ios_base_void__4169B0(x86::thread_state*, x86::memory_view*);
 void sub_416A10(x86::thread_state*, x86::memory_view*);
 void sub_416A20(x86::thread_state*, x86::memory_view*);
 void sub_416A30(x86::thread_state*, x86::memory_view*);
@@ -780,11 +780,11 @@ void sub_4236E0(x86::thread_state*, x86::memory_view*);
 void std__locale___Locimp____Locimp_void_(x86::thread_state*, x86::memory_view*);
 void sub_423780(x86::thread_state*, x86::memory_view*);
 void sub_423820(x86::thread_state*, x86::memory_view*);
-void std__locale___Locimp____Locimp_void_(x86::thread_state*, x86::memory_view*);
+void std__locale___Locimp____Locimp_void__423850(x86::thread_state*, x86::memory_view*);
 void sub_4238C0(x86::thread_state*, x86::memory_view*);
 void sub_423960(x86::thread_state*, x86::memory_view*);
 void sub_423970(x86::thread_state*, x86::memory_view*);
-void std__locale___Locimp____Locimp_void_(x86::thread_state*, x86::memory_view*);
+void std__locale___Locimp____Locimp_void__4239A0(x86::thread_state*, x86::memory_view*);
 void sub_423A10(x86::thread_state*, x86::memory_view*);
 void sub_423B60(x86::thread_state*, x86::memory_view*);
 void sub_423C20(x86::thread_state*, x86::memory_view*);
@@ -793,7 +793,7 @@ void sub_423CB0(x86::thread_state*, x86::memory_view*);
 void sub_423CC0(x86::thread_state*, x86::memory_view*);
 void sub_423D70(x86::thread_state*, x86::memory_view*);
 void sub_423D80(x86::thread_state*, x86::memory_view*);
-void std__locale___Locimp____Locimp_void_(x86::thread_state*, x86::memory_view*);
+void std__locale___Locimp____Locimp_void__423DB0(x86::thread_state*, x86::memory_view*);
 void sub_423E20(x86::thread_state*, x86::memory_view*);
 void sub_4241C0(x86::thread_state*, x86::memory_view*);
 void sub_424200(x86::thread_state*, x86::memory_view*);
@@ -804,11 +804,11 @@ void sub_4242D0(x86::thread_state*, x86::memory_view*);
 void sub_4243B0(x86::thread_state*, x86::memory_view*);
 void sub_4244B0(x86::thread_state*, x86::memory_view*);
 void sub_4244C0(x86::thread_state*, x86::memory_view*);
-void std__locale___Locimp____Locimp_void_(x86::thread_state*, x86::memory_view*);
+void std__locale___Locimp____Locimp_void__4244F0(x86::thread_state*, x86::memory_view*);
 void sub_424560(x86::thread_state*, x86::memory_view*);
 void sub_424600(x86::thread_state*, x86::memory_view*);
 void sub_424610(x86::thread_state*, x86::memory_view*);
-void std__locale___Locimp____Locimp_void_(x86::thread_state*, x86::memory_view*);
+void std__locale___Locimp____Locimp_void__424640(x86::thread_state*, x86::memory_view*);
 void sub_4246B0(x86::thread_state*, x86::memory_view*);
 void sub_424980(x86::thread_state*, x86::memory_view*);
 void sub_4249B0(x86::thread_state*, x86::memory_view*);
@@ -818,7 +818,7 @@ void sub_424B30(x86::thread_state*, x86::memory_view*);
 void sub_424B40(x86::thread_state*, x86::memory_view*);
 void sub_424C00(x86::thread_state*, x86::memory_view*);
 void sub_424C10(x86::thread_state*, x86::memory_view*);
-void std__locale___Locimp____Locimp_void_(x86::thread_state*, x86::memory_view*);
+void std__locale___Locimp____Locimp_void__424C40(x86::thread_state*, x86::memory_view*);
 void sub_424CB0(x86::thread_state*, x86::memory_view*);
 void sub_425100(x86::thread_state*, x86::memory_view*);
 void sub_425140(x86::thread_state*, x86::memory_view*);
@@ -1065,7 +1065,7 @@ void sub_433070(x86::thread_state*, x86::memory_view*);
 void sub_433090(x86::thread_state*, x86::memory_view*);
 void sub_433220(x86::thread_state*, x86::memory_view*);
 void sub_4335C0(x86::thread_state*, x86::memory_view*);
-void std__ios_base___ios_base_void_(x86::thread_state*, x86::memory_view*);
+void std__ios_base___ios_base_void__433800(x86::thread_state*, x86::memory_view*);
 void sub_433880(x86::thread_state*, x86::memory_view*);
 void sub_4339E0(x86::thread_state*, x86::memory_view*);
 void sub_433A30(x86::thread_state*, x86::memory_view*);
@@ -1119,7 +1119,7 @@ void sub_435980(x86::thread_state*, x86::memory_view*);
 void sub_435A50(x86::thread_state*, x86::memory_view*);
 void sub_435A90(x86::thread_state*, x86::memory_view*);
 void sub_435AD0(x86::thread_state*, x86::memory_view*);
-void std__ios_base___ios_base_void_(x86::thread_state*, x86::memory_view*);
+void std__ios_base___ios_base_void__435B30(x86::thread_state*, x86::memory_view*);
 void sub_435B80(x86::thread_state*, x86::memory_view*);
 void sub_435BE0(x86::thread_state*, x86::memory_view*);
 void sub_435D30(x86::thread_state*, x86::memory_view*);
@@ -1153,7 +1153,7 @@ void sub_437370(x86::thread_state*, x86::memory_view*);
 void sub_4373A0(x86::thread_state*, x86::memory_view*);
 void sub_437450(x86::thread_state*, x86::memory_view*);
 void sub_437500(x86::thread_state*, x86::memory_view*);
-void std__locale___Locimp____Locimp_void_(x86::thread_state*, x86::memory_view*);
+void std__locale___Locimp____Locimp_void__4375B0(x86::thread_state*, x86::memory_view*);
 void sub_437640(x86::thread_state*, x86::memory_view*);
 void sub_437660(x86::thread_state*, x86::memory_view*);
 void sub_4376F0(x86::thread_state*, x86::memory_view*);
@@ -1208,7 +1208,7 @@ void sub_439930(x86::thread_state*, x86::memory_view*);
 void sub_439970(x86::thread_state*, x86::memory_view*);
 void sub_439A10(x86::thread_state*, x86::memory_view*);
 void sub_439C30(x86::thread_state*, x86::memory_view*);
-void std__locale___Locimp____Locimp_void_(x86::thread_state*, x86::memory_view*);
+void std__locale___Locimp____Locimp_void__439CB0(x86::thread_state*, x86::memory_view*);
 void sub_439D70(x86::thread_state*, x86::memory_view*);
 void sub_439EA0(x86::thread_state*, x86::memory_view*);
 void sub_439EE0(x86::thread_state*, x86::memory_view*);
@@ -1632,17 +1632,17 @@ void sub_44DE60(x86::thread_state*, x86::memory_view*);
 void sub_44DE70(x86::thread_state*, x86::memory_view*);
 void sub_44DE80(x86::thread_state*, x86::memory_view*);
 void sub_44DE90(x86::thread_state*, x86::memory_view*);
-void filebuf___filebuf_void_(x86::thread_state*, x86::memory_view*);
+void filebuf___filebuf_void__44E280(x86::thread_state*, x86::memory_view*);
 void sub_44E320(x86::thread_state*, x86::memory_view*);
 void sub_44EBB0(x86::thread_state*, x86::memory_view*);
 void sub_44ED50(x86::thread_state*, x86::memory_view*);
 void sub_44ED90(x86::thread_state*, x86::memory_view*);
-void std__ios_base___ios_base_void_(x86::thread_state*, x86::memory_view*);
+void std__ios_base___ios_base_void__44EDE0(x86::thread_state*, x86::memory_view*);
 void sub_44EF60(x86::thread_state*, x86::memory_view*);
 void sub_44EFE0(x86::thread_state*, x86::memory_view*);
 void sub_44F1A0(x86::thread_state*, x86::memory_view*);
 void sub_44F1C0(x86::thread_state*, x86::memory_view*);
-void std__ios_base___ios_base_void_(x86::thread_state*, x86::memory_view*);
+void std__ios_base___ios_base_void__44F1E0(x86::thread_state*, x86::memory_view*);
 void sub_44F2B0(x86::thread_state*, x86::memory_view*);
 void sub_44F300(x86::thread_state*, x86::memory_view*);
 void sub_44F480(x86::thread_state*, x86::memory_view*);
@@ -2530,7 +2530,7 @@ void sub_475B30(x86::thread_state*, x86::memory_view*);
 void sub_475DB0(x86::thread_state*, x86::memory_view*);
 void sub_475E10(x86::thread_state*, x86::memory_view*);
 void sub_475F90(x86::thread_state*, x86::memory_view*);
-void std__ios_base___ios_base_void_(x86::thread_state*, x86::memory_view*);
+void std__ios_base___ios_base_void__476000(x86::thread_state*, x86::memory_view*);
 void sub_4760E0(x86::thread_state*, x86::memory_view*);
 void sub_4761F0(x86::thread_state*, x86::memory_view*);
 void sub_476280(x86::thread_state*, x86::memory_view*);
@@ -2776,11 +2776,11 @@ void sub_4814C0(x86::thread_state*, x86::memory_view*);
 void sub_4814E0(x86::thread_state*, x86::memory_view*);
 void sub_481500(x86::thread_state*, x86::memory_view*);
 void sub_4815B0(x86::thread_state*, x86::memory_view*);
-void std__strstreambuf___strstreambuf_void_(x86::thread_state*, x86::memory_view*);
+void std__strstreambuf___strstreambuf_void__481680(x86::thread_state*, x86::memory_view*);
 void sub_4816E0(x86::thread_state*, x86::memory_view*);
 void sub_481760(x86::thread_state*, x86::memory_view*);
 void sub_4817B0(x86::thread_state*, x86::memory_view*);
-void std__locale___Locimp____Locimp_void_(x86::thread_state*, x86::memory_view*);
+void std__locale___Locimp____Locimp_void__4817D0(x86::thread_state*, x86::memory_view*);
 void sub_481850(x86::thread_state*, x86::memory_view*);
 void sub_481BD0(x86::thread_state*, x86::memory_view*);
 void sub_481CD0(x86::thread_state*, x86::memory_view*);
@@ -3186,7 +3186,7 @@ void sub_496D10(x86::thread_state*, x86::memory_view*);
 void sub_496D70(x86::thread_state*, x86::memory_view*);
 void sub_496EF0(x86::thread_state*, x86::memory_view*);
 void sub_496F50(x86::thread_state*, x86::memory_view*);
-void std__strstreambuf___strstreambuf_void_(x86::thread_state*, x86::memory_view*);
+void std__strstreambuf___strstreambuf_void__496FE0(x86::thread_state*, x86::memory_view*);
 void sub_497040(x86::thread_state*, x86::memory_view*);
 void sub_497330(x86::thread_state*, x86::memory_view*);
 void sub_4974A0(x86::thread_state*, x86::memory_view*);
@@ -3533,7 +3533,7 @@ void sub_4A1F30(x86::thread_state*, x86::memory_view*);
 void sub_4A1FD0(x86::thread_state*, x86::memory_view*);
 void sub_4A2090(x86::thread_state*, x86::memory_view*);
 void sub_4A20D0(x86::thread_state*, x86::memory_view*);
-void std__ios_base___ios_base_void_(x86::thread_state*, x86::memory_view*);
+void std__ios_base___ios_base_void__4A2170(x86::thread_state*, x86::memory_view*);
 void sub_4A21E0(x86::thread_state*, x86::memory_view*);
 void sub_4A22A0(x86::thread_state*, x86::memory_view*);
 void sub_4A24C0(x86::thread_state*, x86::memory_view*);
@@ -3698,7 +3698,7 @@ void sub_4A9070(x86::thread_state*, x86::memory_view*);
 void sub_4A9080(x86::thread_state*, x86::memory_view*);
 void sub_4A90E0(x86::thread_state*, x86::memory_view*);
 void sub_4A90F0(x86::thread_state*, x86::memory_view*);
-void stdiobuf___stdiobuf_void_(x86::thread_state*, x86::memory_view*);
+void stdiobuf___stdiobuf_void__4A92B0(x86::thread_state*, x86::memory_view*);
 void sub_4A9310(x86::thread_state*, x86::memory_view*);
 void sub_4A9330(x86::thread_state*, x86::memory_view*);
 void sub_4A9340(x86::thread_state*, x86::memory_view*);
@@ -4415,7 +4415,7 @@ void sub_4C18B0(x86::thread_state*, x86::memory_view*);
 void sub_4C1920(x86::thread_state*, x86::memory_view*);
 void sub_4C1960(x86::thread_state*, x86::memory_view*);
 void sub_4C19E0(x86::thread_state*, x86::memory_view*);
-void std__strstreambuf___strstreambuf_void_(x86::thread_state*, x86::memory_view*);
+void std__strstreambuf___strstreambuf_void__4C1A70(x86::thread_state*, x86::memory_view*);
 void sub_4C1BA0(x86::thread_state*, x86::memory_view*);
 void sub_4C1D40(x86::thread_state*, x86::memory_view*);
 void sub_4C1FA0(x86::thread_state*, x86::memory_view*);
@@ -4609,7 +4609,7 @@ void sub_4CC4A0(x86::thread_state*, x86::memory_view*);
 void sub_4CC530(x86::thread_state*, x86::memory_view*);
 void sub_4CC5C0(x86::thread_state*, x86::memory_view*);
 void sub_4CC7C0(x86::thread_state*, x86::memory_view*);
-void std__strstreambuf___strstreambuf_void_(x86::thread_state*, x86::memory_view*);
+void std__strstreambuf___strstreambuf_void__4CC860(x86::thread_state*, x86::memory_view*);
 void sub_4CC900(x86::thread_state*, x86::memory_view*);
 void sub_4CCB10(x86::thread_state*, x86::memory_view*);
 void sub_4CCB40(x86::thread_state*, x86::memory_view*);
@@ -4664,11 +4664,11 @@ void sub_4D03F0(x86::thread_state*, x86::memory_view*);
 void sub_4D0450(x86::thread_state*, x86::memory_view*);
 void sub_4D0470(x86::thread_state*, x86::memory_view*);
 void sub_4D0500(x86::thread_state*, x86::memory_view*);
-void stdiobuf___stdiobuf_void_(x86::thread_state*, x86::memory_view*);
+void stdiobuf___stdiobuf_void__4D0620(x86::thread_state*, x86::memory_view*);
 void sub_4D0690(x86::thread_state*, x86::memory_view*);
-void stdiobuf___stdiobuf_void_(x86::thread_state*, x86::memory_view*);
+void stdiobuf___stdiobuf_void__4D07D0(x86::thread_state*, x86::memory_view*);
 void sub_4D0860(x86::thread_state*, x86::memory_view*);
-void stdiobuf___stdiobuf_void_(x86::thread_state*, x86::memory_view*);
+void stdiobuf___stdiobuf_void__4D0910(x86::thread_state*, x86::memory_view*);
 void sub_4D09A0(x86::thread_state*, x86::memory_view*);
 void sub_4D0FF0(x86::thread_state*, x86::memory_view*);
 void sub_4D1080(x86::thread_state*, x86::memory_view*);
@@ -4684,7 +4684,7 @@ void sub_4D1930(x86::thread_state*, x86::memory_view*);
 void sub_4D1950(x86::thread_state*, x86::memory_view*);
 void sub_4D1960(x86::thread_state*, x86::memory_view*);
 void sub_4D19E0(x86::thread_state*, x86::memory_view*);
-void std__strstreambuf___strstreambuf_void_(x86::thread_state*, x86::memory_view*);
+void std__strstreambuf___strstreambuf_void__4D1A00(x86::thread_state*, x86::memory_view*);
 void sub_4D1A60(x86::thread_state*, x86::memory_view*);
 void sub_4D1BD0(x86::thread_state*, x86::memory_view*);
 void sub_4D1CE0(x86::thread_state*, x86::memory_view*);
@@ -4709,8 +4709,8 @@ void sub_4D40E0(x86::thread_state*, x86::memory_view*);
 void sub_4D4347(x86::thread_state*, x86::memory_view*);
 void sub_4D4440(x86::thread_state*, x86::memory_view*);
 void sub_4D4560(x86::thread_state*, x86::memory_view*);
-void stdiobuf___stdiobuf_void_(x86::thread_state*, x86::memory_view*);
-void std__ios_base___ios_base_void_(x86::thread_state*, x86::memory_view*);
+void stdiobuf___stdiobuf_void__4D47C0(x86::thread_state*, x86::memory_view*);
+void std__ios_base___ios_base_void__4D4830(x86::thread_state*, x86::memory_view*);
 void sub_4D4952(x86::thread_state*, x86::memory_view*);
 void sub_4D49D0(x86::thread_state*, x86::memory_view*);
 void sub_4D4D50(x86::thread_state*, x86::memory_view*);
@@ -4808,9 +4808,9 @@ void sub_4DECD0(x86::thread_state*, x86::memory_view*);
 void sub_4DEE90(x86::thread_state*, x86::memory_view*);
 void sub_4DEF30(x86::thread_state*, x86::memory_view*);
 void sub_4DEF60(x86::thread_state*, x86::memory_view*);
-void std__strstreambuf___strstreambuf_void_(x86::thread_state*, x86::memory_view*);
+void std__strstreambuf___strstreambuf_void__4DEFB0(x86::thread_state*, x86::memory_view*);
 void sub_4DF010(x86::thread_state*, x86::memory_view*);
-void std__locale___Locimp____Locimp_void_(x86::thread_state*, x86::memory_view*);
+void std__locale___Locimp____Locimp_void__4DF030(x86::thread_state*, x86::memory_view*);
 void sub_4DF0C0(x86::thread_state*, x86::memory_view*);
 void sub_4DF120(x86::thread_state*, x86::memory_view*);
 void sub_4DF140(x86::thread_state*, x86::memory_view*);
@@ -4834,7 +4834,7 @@ void sub_4DFC50(x86::thread_state*, x86::memory_view*);
 void sub_4E0160(x86::thread_state*, x86::memory_view*);
 void sub_4E0440(x86::thread_state*, x86::memory_view*);
 void sub_4E0830(x86::thread_state*, x86::memory_view*);
-void std__locale___Locimp____Locimp_void_(x86::thread_state*, x86::memory_view*);
+void std__locale___Locimp____Locimp_void__4E0850(x86::thread_state*, x86::memory_view*);
 void sub_4E08E0(x86::thread_state*, x86::memory_view*);
 void sub_4E0B20(x86::thread_state*, x86::memory_view*);
 void sub_4E0B50(x86::thread_state*, x86::memory_view*);
@@ -4901,7 +4901,7 @@ void sub_4E5E60(x86::thread_state*, x86::memory_view*);
 void sub_4E5F60(x86::thread_state*, x86::memory_view*);
 void sub_4E5F80(x86::thread_state*, x86::memory_view*);
 void sub_4E6180(x86::thread_state*, x86::memory_view*);
-void filebuf___filebuf_void_(x86::thread_state*, x86::memory_view*);
+void filebuf___filebuf_void__4E61A0(x86::thread_state*, x86::memory_view*);
 void sub_4E6210(x86::thread_state*, x86::memory_view*);
 void sub_4E62F0(x86::thread_state*, x86::memory_view*);
 void sub_4E6310(x86::thread_state*, x86::memory_view*);
@@ -4946,7 +4946,7 @@ void sub_4E9210(x86::thread_state*, x86::memory_view*);
 void sub_4E9470(x86::thread_state*, x86::memory_view*);
 void sub_4E94C0(x86::thread_state*, x86::memory_view*);
 void sub_4E9520(x86::thread_state*, x86::memory_view*);
-void std__strstreambuf___strstreambuf_void_(x86::thread_state*, x86::memory_view*);
+void std__strstreambuf___strstreambuf_void__4E9540(x86::thread_state*, x86::memory_view*);
 void sub_4E95A0(x86::thread_state*, x86::memory_view*);
 void sub_4E9640(x86::thread_state*, x86::memory_view*);
 void sub_4E97E0(x86::thread_state*, x86::memory_view*);
@@ -5101,7 +5101,7 @@ void sub_4F4350(x86::thread_state*, x86::memory_view*);
 void sub_4F4370(x86::thread_state*, x86::memory_view*);
 void sub_4F4610(x86::thread_state*, x86::memory_view*);
 void sub_4F4670(x86::thread_state*, x86::memory_view*);
-void std__locale___Locimp____Locimp_void_(x86::thread_state*, x86::memory_view*);
+void std__locale___Locimp____Locimp_void__4F4690(x86::thread_state*, x86::memory_view*);
 void sub_4F4730(x86::thread_state*, x86::memory_view*);
 void sub_4F4790(x86::thread_state*, x86::memory_view*);
 void sub_4F47F0(x86::thread_state*, x86::memory_view*);
@@ -5136,7 +5136,7 @@ void sub_4F86D0(x86::thread_state*, x86::memory_view*);
 void sub_4F87E0(x86::thread_state*, x86::memory_view*);
 void sub_4F89D0(x86::thread_state*, x86::memory_view*);
 void sub_4F8B60(x86::thread_state*, x86::memory_view*);
-void std__strstreambuf___strstreambuf_void_(x86::thread_state*, x86::memory_view*);
+void std__strstreambuf___strstreambuf_void__4F8B80(x86::thread_state*, x86::memory_view*);
 void sub_4F8BF0(x86::thread_state*, x86::memory_view*);
 void sub_4F92A0(x86::thread_state*, x86::memory_view*);
 void sub_4F92E0(x86::thread_state*, x86::memory_view*);
@@ -5443,7 +5443,7 @@ void sub_503360(x86::thread_state*, x86::memory_view*);
 void sub_5033F0(x86::thread_state*, x86::memory_view*);
 void sub_503460(x86::thread_state*, x86::memory_view*);
 void sub_503490(x86::thread_state*, x86::memory_view*);
-void std__basic_streambuf_char_std__char_traits_char____underflow_void_(x86::thread_state*, x86::memory_view*);
+void std__basic_streambuf_char_std__char_traits_char____underflow_void__5034AD(x86::thread_state*, x86::memory_view*);
 void sub_5034C0(x86::thread_state*, x86::memory_view*);
 void sub_503510(x86::thread_state*, x86::memory_view*);
 void sub_503550(x86::thread_state*, x86::memory_view*);
@@ -5895,7 +5895,7 @@ void sub_5143C0(x86::thread_state*, x86::memory_view*);
 void sub_514400(x86::thread_state*, x86::memory_view*);
 void sub_514530(x86::thread_state*, x86::memory_view*);
 void sub_514700(x86::thread_state*, x86::memory_view*);
-void std__strstreambuf___strstreambuf_void_(x86::thread_state*, x86::memory_view*);
+void std__strstreambuf___strstreambuf_void__514720(x86::thread_state*, x86::memory_view*);
 void sub_514780(x86::thread_state*, x86::memory_view*);
 void sub_5147F0(x86::thread_state*, x86::memory_view*);
 void sub_514810(x86::thread_state*, x86::memory_view*);
@@ -6521,7 +6521,7 @@ void sub_531900(x86::thread_state*, x86::memory_view*);
 void sub_531980(x86::thread_state*, x86::memory_view*);
 void sub_5319C0(x86::thread_state*, x86::memory_view*);
 void sub_531BC0(x86::thread_state*, x86::memory_view*);
-void std__ios_base___ios_base_void_(x86::thread_state*, x86::memory_view*);
+void std__ios_base___ios_base_void__531BE0(x86::thread_state*, x86::memory_view*);
 void sub_531D20(x86::thread_state*, x86::memory_view*);
 void sub_531DF0(x86::thread_state*, x86::memory_view*);
 void sub_531FE0(x86::thread_state*, x86::memory_view*);
@@ -6572,7 +6572,7 @@ void unknown_libname_6(x86::thread_state*, x86::memory_view*);
 void sub_534850(x86::thread_state*, x86::memory_view*);
 void sub_5348E0(x86::thread_state*, x86::memory_view*);
 void sub_5349C0(x86::thread_state*, x86::memory_view*);
-void stdiobuf___stdiobuf_void_(x86::thread_state*, x86::memory_view*);
+void stdiobuf___stdiobuf_void__534A50(x86::thread_state*, x86::memory_view*);
 void sub_534AA0(x86::thread_state*, x86::memory_view*);
 void sub_534AC0(x86::thread_state*, x86::memory_view*);
 void sub_534B10(x86::thread_state*, x86::memory_view*);
@@ -6591,7 +6591,6 @@ void sub_535170(x86::thread_state*, x86::memory_view*);
 void sub_535210(x86::thread_state*, x86::memory_view*);
 void sub_5352B0(x86::thread_state*, x86::memory_view*);
 void sub_5352D0(x86::thread_state*, x86::memory_view*);
-void sub_535341(x86::thread_state*, x86::memory_view*);
 void sub_5354F0(x86::thread_state*, x86::memory_view*);
 void sub_535570(x86::thread_state*, x86::memory_view*);
 void sub_535610(x86::thread_state*, x86::memory_view*);
@@ -6781,9 +6780,9 @@ void sub_53E650(x86::thread_state*, x86::memory_view*);
 void sub_53E710(x86::thread_state*, x86::memory_view*);
 void sub_53E910(x86::thread_state*, x86::memory_view*);
 void sub_53EB20(x86::thread_state*, x86::memory_view*);
-void std__ios_base___ios_base_void_(x86::thread_state*, x86::memory_view*);
+void std__ios_base___ios_base_void__53EB40(x86::thread_state*, x86::memory_view*);
 void sub_53EC20(x86::thread_state*, x86::memory_view*);
-void std__ios_base___ios_base_void_(x86::thread_state*, x86::memory_view*);
+void std__ios_base___ios_base_void__53EC40(x86::thread_state*, x86::memory_view*);
 void sub_53ED20(x86::thread_state*, x86::memory_view*);
 void sub_53EE30(x86::thread_state*, x86::memory_view*);
 void sub_53EE60(x86::thread_state*, x86::memory_view*);
@@ -7021,7 +7020,7 @@ void sub_552CC0(x86::thread_state*, x86::memory_view*);
 void sub_552E30(x86::thread_state*, x86::memory_view*);
 void sub_552EB0(x86::thread_state*, x86::memory_view*);
 void sub_552F40(x86::thread_state*, x86::memory_view*);
-void std__locale___Locimp____Locimp_void_(x86::thread_state*, x86::memory_view*);
+void std__locale___Locimp____Locimp_void__552F60(x86::thread_state*, x86::memory_view*);
 void sub_553070(x86::thread_state*, x86::memory_view*);
 void sub_5530C0(x86::thread_state*, x86::memory_view*);
 void sub_5530E0(x86::thread_state*, x86::memory_view*);
@@ -7180,7 +7179,7 @@ void sub_55AD00(x86::thread_state*, x86::memory_view*);
 void sub_55AD20(x86::thread_state*, x86::memory_view*);
 void sub_55AD70(x86::thread_state*, x86::memory_view*);
 void sub_55AEA0(x86::thread_state*, x86::memory_view*);
-void stdiobuf___stdiobuf_void_(x86::thread_state*, x86::memory_view*);
+void stdiobuf___stdiobuf_void__55AEC0(x86::thread_state*, x86::memory_view*);
 void sub_55AF20(x86::thread_state*, x86::memory_view*);
 void sub_55AF80(x86::thread_state*, x86::memory_view*);
 void sub_55AFE0(x86::thread_state*, x86::memory_view*);
@@ -7236,7 +7235,7 @@ void sub_55E520(x86::thread_state*, x86::memory_view*);
 void sub_55E790(x86::thread_state*, x86::memory_view*);
 void sub_55E820(x86::thread_state*, x86::memory_view*);
 void sub_55EB20(x86::thread_state*, x86::memory_view*);
-void std__strstreambuf___strstreambuf_void_(x86::thread_state*, x86::memory_view*);
+void std__strstreambuf___strstreambuf_void__55EB40(x86::thread_state*, x86::memory_view*);
 void sub_55EBA0(x86::thread_state*, x86::memory_view*);
 void sub_55EDD0(x86::thread_state*, x86::memory_view*);
 void sub_55EF80(x86::thread_state*, x86::memory_view*);
@@ -7329,7 +7328,7 @@ void sub_56A880(x86::thread_state*, x86::memory_view*);
 void sub_56AB00(x86::thread_state*, x86::memory_view*);
 void sub_56AEB0(x86::thread_state*, x86::memory_view*);
 void sub_56B070(x86::thread_state*, x86::memory_view*);
-void std__locale___Locimp____Locimp_void_(x86::thread_state*, x86::memory_view*);
+void std__locale___Locimp____Locimp_void__56B090(x86::thread_state*, x86::memory_view*);
 void sub_56B140(x86::thread_state*, x86::memory_view*);
 void sub_56B1A0(x86::thread_state*, x86::memory_view*);
 void sub_56B1C0(x86::thread_state*, x86::memory_view*);
@@ -8065,7 +8064,7 @@ void sub_5883E0(x86::thread_state*, x86::memory_view*);
 void sub_588440(x86::thread_state*, x86::memory_view*);
 void sub_588480(x86::thread_state*, x86::memory_view*);
 void sub_5884A0(x86::thread_state*, x86::memory_view*);
-void std__locale___Locimp____Locimp_void_(x86::thread_state*, x86::memory_view*);
+void std__locale___Locimp____Locimp_void__5884E0(x86::thread_state*, x86::memory_view*);
 void sub_588630(x86::thread_state*, x86::memory_view*);
 void sub_588770(x86::thread_state*, x86::memory_view*);
 void sub_588A40(x86::thread_state*, x86::memory_view*);
@@ -9603,7 +9602,7 @@ void sub_5EB910(x86::thread_state*, x86::memory_view*);
 void sub_5EB920(x86::thread_state*, x86::memory_view*);
 void sub_5EB930(x86::thread_state*, x86::memory_view*);
 void sub_5EB9B0(x86::thread_state*, x86::memory_view*);
-void std__strstreambuf___strstreambuf_void_(x86::thread_state*, x86::memory_view*);
+void std__strstreambuf___strstreambuf_void__5EB9D0(x86::thread_state*, x86::memory_view*);
 void sub_5EBA30(x86::thread_state*, x86::memory_view*);
 void sub_5EBBE0(x86::thread_state*, x86::memory_view*);
 void sub_5EBC00(x86::thread_state*, x86::memory_view*);
@@ -9891,7 +9890,7 @@ void sub_5FC850(x86::thread_state*, x86::memory_view*);
 void sub_5FC900(x86::thread_state*, x86::memory_view*);
 void sub_5FCA90(x86::thread_state*, x86::memory_view*);
 void sub_5FCB00(x86::thread_state*, x86::memory_view*);
-void std__locale___Locimp____Locimp_void_(x86::thread_state*, x86::memory_view*);
+void std__locale___Locimp____Locimp_void__5FCCB0(x86::thread_state*, x86::memory_view*);
 void sub_5FCD60(x86::thread_state*, x86::memory_view*);
 void sub_5FD360(x86::thread_state*, x86::memory_view*);
 void sub_5FD940(x86::thread_state*, x86::memory_view*);
@@ -10646,7 +10645,7 @@ void sub_6452DB(x86::thread_state*, x86::memory_view*);
 void sub_645362(x86::thread_state*, x86::memory_view*);
 void sub_64537B(x86::thread_state*, x86::memory_view*);
 void sub_6453E2(x86::thread_state*, x86::memory_view*);
-void std__tr1___Ref_count___ExceptionPtr____Destroy_void_(x86::thread_state*, x86::memory_view*);
+void std__tr1___Ref_count___ExceptionPtr____Destroy_void__64541D(x86::thread_state*, x86::memory_view*);
 void sub_645437(x86::thread_state*, x86::memory_view*);
 void sub_645458(x86::thread_state*, x86::memory_view*);
 void sub_64547F(x86::thread_state*, x86::memory_view*);
@@ -16544,7 +16543,7 @@ struct function_entry {
     x86::function* function;
 };
 
-function_entry functions[16532] = {
+function_entry functions[16531] = {
     {0x401000, &sub_401000},
     {0x401020, &sub_401020},
     {0x401050, &sub_401050},
@@ -17034,7 +17033,7 @@ function_entry functions[16532] = {
     {0x410030, &sub_410030},
     {0x410040, &sub_410040},
     {0x410120, &sub_410120},
-    {0x4101E0, &std__ios_base___ios_base_void_},
+    {0x4101E0, &std__ios_base___ios_base_void__4101E0},
     {0x4102B0, &sub_4102B0},
     {0x4103A0, &std__strstreambuf___strstreambuf_void_},
     {0x410420, &sub_410420},
@@ -17146,7 +17145,7 @@ function_entry functions[16532] = {
     {0x415F80, &sub_415F80},
     {0x416100, &sub_416100},
     {0x416120, &sub_416120},
-    {0x4169B0, &std__ios_base___ios_base_void_},
+    {0x4169B0, &std__ios_base___ios_base_void__4169B0},
     {0x416A10, &sub_416A10},
     {0x416A20, &sub_416A20},
     {0x416A30, &sub_416A30},
@@ -17319,11 +17318,11 @@ function_entry functions[16532] = {
     {0x423710, &std__locale___Locimp____Locimp_void_},
     {0x423780, &sub_423780},
     {0x423820, &sub_423820},
-    {0x423850, &std__locale___Locimp____Locimp_void_},
+    {0x423850, &std__locale___Locimp____Locimp_void__423850},
     {0x4238C0, &sub_4238C0},
     {0x423960, &sub_423960},
     {0x423970, &sub_423970},
-    {0x4239A0, &std__locale___Locimp____Locimp_void_},
+    {0x4239A0, &std__locale___Locimp____Locimp_void__4239A0},
     {0x423A10, &sub_423A10},
     {0x423B60, &sub_423B60},
     {0x423C20, &sub_423C20},
@@ -17332,7 +17331,7 @@ function_entry functions[16532] = {
     {0x423CC0, &sub_423CC0},
     {0x423D70, &sub_423D70},
     {0x423D80, &sub_423D80},
-    {0x423DB0, &std__locale___Locimp____Locimp_void_},
+    {0x423DB0, &std__locale___Locimp____Locimp_void__423DB0},
     {0x423E20, &sub_423E20},
     {0x4241C0, &sub_4241C0},
     {0x424200, &sub_424200},
@@ -17343,11 +17342,11 @@ function_entry functions[16532] = {
     {0x4243B0, &sub_4243B0},
     {0x4244B0, &sub_4244B0},
     {0x4244C0, &sub_4244C0},
-    {0x4244F0, &std__locale___Locimp____Locimp_void_},
+    {0x4244F0, &std__locale___Locimp____Locimp_void__4244F0},
     {0x424560, &sub_424560},
     {0x424600, &sub_424600},
     {0x424610, &sub_424610},
-    {0x424640, &std__locale___Locimp____Locimp_void_},
+    {0x424640, &std__locale___Locimp____Locimp_void__424640},
     {0x4246B0, &sub_4246B0},
     {0x424980, &sub_424980},
     {0x4249B0, &sub_4249B0},
@@ -17357,7 +17356,7 @@ function_entry functions[16532] = {
     {0x424B40, &sub_424B40},
     {0x424C00, &sub_424C00},
     {0x424C10, &sub_424C10},
-    {0x424C40, &std__locale___Locimp____Locimp_void_},
+    {0x424C40, &std__locale___Locimp____Locimp_void__424C40},
     {0x424CB0, &sub_424CB0},
     {0x425100, &sub_425100},
     {0x425140, &sub_425140},
@@ -17604,7 +17603,7 @@ function_entry functions[16532] = {
     {0x433090, &sub_433090},
     {0x433220, &sub_433220},
     {0x4335C0, &sub_4335C0},
-    {0x433800, &std__ios_base___ios_base_void_},
+    {0x433800, &std__ios_base___ios_base_void__433800},
     {0x433880, &sub_433880},
     {0x4339E0, &sub_4339E0},
     {0x433A30, &sub_433A30},
@@ -17658,7 +17657,7 @@ function_entry functions[16532] = {
     {0x435A50, &sub_435A50},
     {0x435A90, &sub_435A90},
     {0x435AD0, &sub_435AD0},
-    {0x435B30, &std__ios_base___ios_base_void_},
+    {0x435B30, &std__ios_base___ios_base_void__435B30},
     {0x435B80, &sub_435B80},
     {0x435BE0, &sub_435BE0},
     {0x435D30, &sub_435D30},
@@ -17692,7 +17691,7 @@ function_entry functions[16532] = {
     {0x4373A0, &sub_4373A0},
     {0x437450, &sub_437450},
     {0x437500, &sub_437500},
-    {0x4375B0, &std__locale___Locimp____Locimp_void_},
+    {0x4375B0, &std__locale___Locimp____Locimp_void__4375B0},
     {0x437640, &sub_437640},
     {0x437660, &sub_437660},
     {0x4376F0, &sub_4376F0},
@@ -17747,7 +17746,7 @@ function_entry functions[16532] = {
     {0x439970, &sub_439970},
     {0x439A10, &sub_439A10},
     {0x439C30, &sub_439C30},
-    {0x439CB0, &std__locale___Locimp____Locimp_void_},
+    {0x439CB0, &std__locale___Locimp____Locimp_void__439CB0},
     {0x439D70, &sub_439D70},
     {0x439EA0, &sub_439EA0},
     {0x439EE0, &sub_439EE0},
@@ -18171,17 +18170,17 @@ function_entry functions[16532] = {
     {0x44DE70, &sub_44DE70},
     {0x44DE80, &sub_44DE80},
     {0x44DE90, &sub_44DE90},
-    {0x44E280, &filebuf___filebuf_void_},
+    {0x44E280, &filebuf___filebuf_void__44E280},
     {0x44E320, &sub_44E320},
     {0x44EBB0, &sub_44EBB0},
     {0x44ED50, &sub_44ED50},
     {0x44ED90, &sub_44ED90},
-    {0x44EDE0, &std__ios_base___ios_base_void_},
+    {0x44EDE0, &std__ios_base___ios_base_void__44EDE0},
     {0x44EF60, &sub_44EF60},
     {0x44EFE0, &sub_44EFE0},
     {0x44F1A0, &sub_44F1A0},
     {0x44F1C0, &sub_44F1C0},
-    {0x44F1E0, &std__ios_base___ios_base_void_},
+    {0x44F1E0, &std__ios_base___ios_base_void__44F1E0},
     {0x44F2B0, &sub_44F2B0},
     {0x44F300, &sub_44F300},
     {0x44F480, &sub_44F480},
@@ -19069,7 +19068,7 @@ function_entry functions[16532] = {
     {0x475DB0, &sub_475DB0},
     {0x475E10, &sub_475E10},
     {0x475F90, &sub_475F90},
-    {0x476000, &std__ios_base___ios_base_void_},
+    {0x476000, &std__ios_base___ios_base_void__476000},
     {0x4760E0, &sub_4760E0},
     {0x4761F0, &sub_4761F0},
     {0x476280, &sub_476280},
@@ -19315,11 +19314,11 @@ function_entry functions[16532] = {
     {0x4814E0, &sub_4814E0},
     {0x481500, &sub_481500},
     {0x4815B0, &sub_4815B0},
-    {0x481680, &std__strstreambuf___strstreambuf_void_},
+    {0x481680, &std__strstreambuf___strstreambuf_void__481680},
     {0x4816E0, &sub_4816E0},
     {0x481760, &sub_481760},
     {0x4817B0, &sub_4817B0},
-    {0x4817D0, &std__locale___Locimp____Locimp_void_},
+    {0x4817D0, &std__locale___Locimp____Locimp_void__4817D0},
     {0x481850, &sub_481850},
     {0x481BD0, &sub_481BD0},
     {0x481CD0, &sub_481CD0},
@@ -19725,7 +19724,7 @@ function_entry functions[16532] = {
     {0x496D70, &sub_496D70},
     {0x496EF0, &sub_496EF0},
     {0x496F50, &sub_496F50},
-    {0x496FE0, &std__strstreambuf___strstreambuf_void_},
+    {0x496FE0, &std__strstreambuf___strstreambuf_void__496FE0},
     {0x497040, &sub_497040},
     {0x497330, &sub_497330},
     {0x4974A0, &sub_4974A0},
@@ -20072,7 +20071,7 @@ function_entry functions[16532] = {
     {0x4A1FD0, &sub_4A1FD0},
     {0x4A2090, &sub_4A2090},
     {0x4A20D0, &sub_4A20D0},
-    {0x4A2170, &std__ios_base___ios_base_void_},
+    {0x4A2170, &std__ios_base___ios_base_void__4A2170},
     {0x4A21E0, &sub_4A21E0},
     {0x4A22A0, &sub_4A22A0},
     {0x4A24C0, &sub_4A24C0},
@@ -20237,7 +20236,7 @@ function_entry functions[16532] = {
     {0x4A9080, &sub_4A9080},
     {0x4A90E0, &sub_4A90E0},
     {0x4A90F0, &sub_4A90F0},
-    {0x4A92B0, &stdiobuf___stdiobuf_void_},
+    {0x4A92B0, &stdiobuf___stdiobuf_void__4A92B0},
     {0x4A9310, &sub_4A9310},
     {0x4A9330, &sub_4A9330},
     {0x4A9340, &sub_4A9340},
@@ -20954,7 +20953,7 @@ function_entry functions[16532] = {
     {0x4C1920, &sub_4C1920},
     {0x4C1960, &sub_4C1960},
     {0x4C19E0, &sub_4C19E0},
-    {0x4C1A70, &std__strstreambuf___strstreambuf_void_},
+    {0x4C1A70, &std__strstreambuf___strstreambuf_void__4C1A70},
     {0x4C1BA0, &sub_4C1BA0},
     {0x4C1D40, &sub_4C1D40},
     {0x4C1FA0, &sub_4C1FA0},
@@ -21148,7 +21147,7 @@ function_entry functions[16532] = {
     {0x4CC530, &sub_4CC530},
     {0x4CC5C0, &sub_4CC5C0},
     {0x4CC7C0, &sub_4CC7C0},
-    {0x4CC860, &std__strstreambuf___strstreambuf_void_},
+    {0x4CC860, &std__strstreambuf___strstreambuf_void__4CC860},
     {0x4CC900, &sub_4CC900},
     {0x4CCB10, &sub_4CCB10},
     {0x4CCB40, &sub_4CCB40},
@@ -21203,11 +21202,11 @@ function_entry functions[16532] = {
     {0x4D0450, &sub_4D0450},
     {0x4D0470, &sub_4D0470},
     {0x4D0500, &sub_4D0500},
-    {0x4D0620, &stdiobuf___stdiobuf_void_},
+    {0x4D0620, &stdiobuf___stdiobuf_void__4D0620},
     {0x4D0690, &sub_4D0690},
-    {0x4D07D0, &stdiobuf___stdiobuf_void_},
+    {0x4D07D0, &stdiobuf___stdiobuf_void__4D07D0},
     {0x4D0860, &sub_4D0860},
-    {0x4D0910, &stdiobuf___stdiobuf_void_},
+    {0x4D0910, &stdiobuf___stdiobuf_void__4D0910},
     {0x4D09A0, &sub_4D09A0},
     {0x4D0FF0, &sub_4D0FF0},
     {0x4D1080, &sub_4D1080},
@@ -21223,7 +21222,7 @@ function_entry functions[16532] = {
     {0x4D1950, &sub_4D1950},
     {0x4D1960, &sub_4D1960},
     {0x4D19E0, &sub_4D19E0},
-    {0x4D1A00, &std__strstreambuf___strstreambuf_void_},
+    {0x4D1A00, &std__strstreambuf___strstreambuf_void__4D1A00},
     {0x4D1A60, &sub_4D1A60},
     {0x4D1BD0, &sub_4D1BD0},
     {0x4D1CE0, &sub_4D1CE0},
@@ -21248,8 +21247,8 @@ function_entry functions[16532] = {
     {0x4D4347, &sub_4D4347},
     {0x4D4440, &sub_4D4440},
     {0x4D4560, &sub_4D4560},
-    {0x4D47C0, &stdiobuf___stdiobuf_void_},
-    {0x4D4830, &std__ios_base___ios_base_void_},
+    {0x4D47C0, &stdiobuf___stdiobuf_void__4D47C0},
+    {0x4D4830, &std__ios_base___ios_base_void__4D4830},
     {0x4D4952, &sub_4D4952},
     {0x4D49D0, &sub_4D49D0},
     {0x4D4D50, &sub_4D4D50},
@@ -21347,9 +21346,9 @@ function_entry functions[16532] = {
     {0x4DEE90, &sub_4DEE90},
     {0x4DEF30, &sub_4DEF30},
     {0x4DEF60, &sub_4DEF60},
-    {0x4DEFB0, &std__strstreambuf___strstreambuf_void_},
+    {0x4DEFB0, &std__strstreambuf___strstreambuf_void__4DEFB0},
     {0x4DF010, &sub_4DF010},
-    {0x4DF030, &std__locale___Locimp____Locimp_void_},
+    {0x4DF030, &std__locale___Locimp____Locimp_void__4DF030},
     {0x4DF0C0, &sub_4DF0C0},
     {0x4DF120, &sub_4DF120},
     {0x4DF140, &sub_4DF140},
@@ -21373,7 +21372,7 @@ function_entry functions[16532] = {
     {0x4E0160, &sub_4E0160},
     {0x4E0440, &sub_4E0440},
     {0x4E0830, &sub_4E0830},
-    {0x4E0850, &std__locale___Locimp____Locimp_void_},
+    {0x4E0850, &std__locale___Locimp____Locimp_void__4E0850},
     {0x4E08E0, &sub_4E08E0},
     {0x4E0B20, &sub_4E0B20},
     {0x4E0B50, &sub_4E0B50},
@@ -21440,7 +21439,7 @@ function_entry functions[16532] = {
     {0x4E5F60, &sub_4E5F60},
     {0x4E5F80, &sub_4E5F80},
     {0x4E6180, &sub_4E6180},
-    {0x4E61A0, &filebuf___filebuf_void_},
+    {0x4E61A0, &filebuf___filebuf_void__4E61A0},
     {0x4E6210, &sub_4E6210},
     {0x4E62F0, &sub_4E62F0},
     {0x4E6310, &sub_4E6310},
@@ -21485,7 +21484,7 @@ function_entry functions[16532] = {
     {0x4E9470, &sub_4E9470},
     {0x4E94C0, &sub_4E94C0},
     {0x4E9520, &sub_4E9520},
-    {0x4E9540, &std__strstreambuf___strstreambuf_void_},
+    {0x4E9540, &std__strstreambuf___strstreambuf_void__4E9540},
     {0x4E95A0, &sub_4E95A0},
     {0x4E9640, &sub_4E9640},
     {0x4E97E0, &sub_4E97E0},
@@ -21640,7 +21639,7 @@ function_entry functions[16532] = {
     {0x4F4370, &sub_4F4370},
     {0x4F4610, &sub_4F4610},
     {0x4F4670, &sub_4F4670},
-    {0x4F4690, &std__locale___Locimp____Locimp_void_},
+    {0x4F4690, &std__locale___Locimp____Locimp_void__4F4690},
     {0x4F4730, &sub_4F4730},
     {0x4F4790, &sub_4F4790},
     {0x4F47F0, &sub_4F47F0},
@@ -21675,7 +21674,7 @@ function_entry functions[16532] = {
     {0x4F87E0, &sub_4F87E0},
     {0x4F89D0, &sub_4F89D0},
     {0x4F8B60, &sub_4F8B60},
-    {0x4F8B80, &std__strstreambuf___strstreambuf_void_},
+    {0x4F8B80, &std__strstreambuf___strstreambuf_void__4F8B80},
     {0x4F8BF0, &sub_4F8BF0},
     {0x4F92A0, &sub_4F92A0},
     {0x4F92E0, &sub_4F92E0},
@@ -21982,7 +21981,7 @@ function_entry functions[16532] = {
     {0x5033F0, &sub_5033F0},
     {0x503460, &sub_503460},
     {0x503490, &sub_503490},
-    {0x5034AD, &std__basic_streambuf_char_std__char_traits_char____underflow_void_},
+    {0x5034AD, &std__basic_streambuf_char_std__char_traits_char____underflow_void__5034AD},
     {0x5034C0, &sub_5034C0},
     {0x503510, &sub_503510},
     {0x503550, &sub_503550},
@@ -22434,7 +22433,7 @@ function_entry functions[16532] = {
     {0x514400, &sub_514400},
     {0x514530, &sub_514530},
     {0x514700, &sub_514700},
-    {0x514720, &std__strstreambuf___strstreambuf_void_},
+    {0x514720, &std__strstreambuf___strstreambuf_void__514720},
     {0x514780, &sub_514780},
     {0x5147F0, &sub_5147F0},
     {0x514810, &sub_514810},
@@ -23060,7 +23059,7 @@ function_entry functions[16532] = {
     {0x531980, &sub_531980},
     {0x5319C0, &sub_5319C0},
     {0x531BC0, &sub_531BC0},
-    {0x531BE0, &std__ios_base___ios_base_void_},
+    {0x531BE0, &std__ios_base___ios_base_void__531BE0},
     {0x531D20, &sub_531D20},
     {0x531DF0, &sub_531DF0},
     {0x531FE0, &sub_531FE0},
@@ -23111,7 +23110,7 @@ function_entry functions[16532] = {
     {0x534850, &sub_534850},
     {0x5348E0, &sub_5348E0},
     {0x5349C0, &sub_5349C0},
-    {0x534A50, &stdiobuf___stdiobuf_void_},
+    {0x534A50, &stdiobuf___stdiobuf_void__534A50},
     {0x534AA0, &sub_534AA0},
     {0x534AC0, &sub_534AC0},
     {0x534B10, &sub_534B10},
@@ -23130,7 +23129,6 @@ function_entry functions[16532] = {
     {0x535210, &sub_535210},
     {0x5352B0, &sub_5352B0},
     {0x5352D0, &sub_5352D0},
-    {0x535341, &sub_535341},
     {0x5354F0, &sub_5354F0},
     {0x535570, &sub_535570},
     {0x535610, &sub_535610},
@@ -23320,9 +23318,9 @@ function_entry functions[16532] = {
     {0x53E710, &sub_53E710},
     {0x53E910, &sub_53E910},
     {0x53EB20, &sub_53EB20},
-    {0x53EB40, &std__ios_base___ios_base_void_},
+    {0x53EB40, &std__ios_base___ios_base_void__53EB40},
     {0x53EC20, &sub_53EC20},
-    {0x53EC40, &std__ios_base___ios_base_void_},
+    {0x53EC40, &std__ios_base___ios_base_void__53EC40},
     {0x53ED20, &sub_53ED20},
     {0x53EE30, &sub_53EE30},
     {0x53EE60, &sub_53EE60},
@@ -23560,7 +23558,7 @@ function_entry functions[16532] = {
     {0x552E30, &sub_552E30},
     {0x552EB0, &sub_552EB0},
     {0x552F40, &sub_552F40},
-    {0x552F60, &std__locale___Locimp____Locimp_void_},
+    {0x552F60, &std__locale___Locimp____Locimp_void__552F60},
     {0x553070, &sub_553070},
     {0x5530C0, &sub_5530C0},
     {0x5530E0, &sub_5530E0},
@@ -23719,7 +23717,7 @@ function_entry functions[16532] = {
     {0x55AD20, &sub_55AD20},
     {0x55AD70, &sub_55AD70},
     {0x55AEA0, &sub_55AEA0},
-    {0x55AEC0, &stdiobuf___stdiobuf_void_},
+    {0x55AEC0, &stdiobuf___stdiobuf_void__55AEC0},
     {0x55AF20, &sub_55AF20},
     {0x55AF80, &sub_55AF80},
     {0x55AFE0, &sub_55AFE0},
@@ -23775,7 +23773,7 @@ function_entry functions[16532] = {
     {0x55E790, &sub_55E790},
     {0x55E820, &sub_55E820},
     {0x55EB20, &sub_55EB20},
-    {0x55EB40, &std__strstreambuf___strstreambuf_void_},
+    {0x55EB40, &std__strstreambuf___strstreambuf_void__55EB40},
     {0x55EBA0, &sub_55EBA0},
     {0x55EDD0, &sub_55EDD0},
     {0x55EF80, &sub_55EF80},
@@ -23868,7 +23866,7 @@ function_entry functions[16532] = {
     {0x56AB00, &sub_56AB00},
     {0x56AEB0, &sub_56AEB0},
     {0x56B070, &sub_56B070},
-    {0x56B090, &std__locale___Locimp____Locimp_void_},
+    {0x56B090, &std__locale___Locimp____Locimp_void__56B090},
     {0x56B140, &sub_56B140},
     {0x56B1A0, &sub_56B1A0},
     {0x56B1C0, &sub_56B1C0},
@@ -24604,7 +24602,7 @@ function_entry functions[16532] = {
     {0x588440, &sub_588440},
     {0x588480, &sub_588480},
     {0x5884A0, &sub_5884A0},
-    {0x5884E0, &std__locale___Locimp____Locimp_void_},
+    {0x5884E0, &std__locale___Locimp____Locimp_void__5884E0},
     {0x588630, &sub_588630},
     {0x588770, &sub_588770},
     {0x588A40, &sub_588A40},
@@ -26142,7 +26140,7 @@ function_entry functions[16532] = {
     {0x5EB920, &sub_5EB920},
     {0x5EB930, &sub_5EB930},
     {0x5EB9B0, &sub_5EB9B0},
-    {0x5EB9D0, &std__strstreambuf___strstreambuf_void_},
+    {0x5EB9D0, &std__strstreambuf___strstreambuf_void__5EB9D0},
     {0x5EBA30, &sub_5EBA30},
     {0x5EBBE0, &sub_5EBBE0},
     {0x5EBC00, &sub_5EBC00},
@@ -26430,7 +26428,7 @@ function_entry functions[16532] = {
     {0x5FC900, &sub_5FC900},
     {0x5FCA90, &sub_5FCA90},
     {0x5FCB00, &sub_5FCB00},
-    {0x5FCCB0, &std__locale___Locimp____Locimp_void_},
+    {0x5FCCB0, &std__locale___Locimp____Locimp_void__5FCCB0},
     {0x5FCD60, &sub_5FCD60},
     {0x5FD360, &sub_5FD360},
     {0x5FD940, &sub_5FD940},
@@ -27185,7 +27183,7 @@ function_entry functions[16532] = {
     {0x645362, &sub_645362},
     {0x64537B, &sub_64537B},
     {0x6453E2, &sub_6453E2},
-    {0x64541D, &std__tr1___Ref_count___ExceptionPtr____Destroy_void_},
+    {0x64541D, &std__tr1___Ref_count___ExceptionPtr____Destroy_void__64541D},
     {0x645437, &sub_645437},
     {0x645458, &sub_645458},
     {0x64547F, &sub_64547F},
