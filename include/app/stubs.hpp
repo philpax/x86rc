@@ -1,0 +1,16 @@
+#pragma once
+
+#include "app/stubs/advapi32.hpp"
+#include "app/stubs/d3d9.hpp"
+#include "app/stubs/ddraw.hpp"
+#include "app/stubs/dinput8.hpp"
+#include "app/stubs/dsound.hpp"
+#include "app/stubs/gdi32.hpp"
+#include "app/stubs/kernel32.hpp"
+#include "app/stubs/netapi32.hpp"
+#include "app/stubs/shell32.hpp"
+#include "app/stubs/shfolder.hpp"
+#include "app/stubs/tapi32.hpp"
+#include "app/stubs/user32.hpp"
+#include "app/stubs/winmm.hpp"
+#include "app/stubs/ws2_32.hpp"

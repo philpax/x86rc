@@ -12,16 +12,27 @@ import re
 
 from enum import Enum
 
+# application code
 GENERATE_APPLICATION_CODE = True
-GENERATE_STUBS = False
-GENERATE_SEGMENTS = False
-GENERATE_INSTRUCTION_FAKES = True
+# stubs for executable imports
+GENERATE_STUBS = True
+# segments for the application
+GENERATE_SEGMENTS = True
+# stubs for every instruction and instruction form used in the program
+GENERATE_INSTRUCTION_FAKES = False
 
 BASE_DIRECTORY = os.path.abspath(
     os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
 )
-STUBS_DIRECTORY = os.path.join(BASE_DIRECTORY, "include", "game", "stubs")
-APPLICATION_FOLDER = os.path.join(BASE_DIRECTORY, "src", "game")
+
+APP_INCLUDE_DIRECTORY = os.path.join(BASE_DIRECTORY, "include", "app")
+APP_SOURCE_DIRECTORY = os.path.join(BASE_DIRECTORY, "src", "app")
+
+STUBS_DIRECTORY = os.path.join(APP_INCLUDE_DIRECTORY, "stubs")
+FUNCTIONS_DIRECTORY = os.path.join(APP_SOURCE_DIRECTORY, "functions")
+
+SEGMENTS_INCLUDE_DIRECTORY = os.path.join(APP_INCLUDE_DIRECTORY, "segments")
+SEGMENTS_SRC_DIRECTORY = os.path.join(APP_SOURCE_DIRECTORY, "segments")
 
 
 class InstructionCategory(Enum):
@@ -243,6 +254,8 @@ SUFFIX_ITYPE[MNEMONIC_TO_ITYPE["int"]] = True
 SUFFIX_ITYPE[MNEMONIC_TO_ITYPE["not"]] = True
 
 seen_names = {}
+
+
 def sanitize_name(name, ea):
     demangled_name = idc.demangle_name(name, idc.get_inf_attr(INF_SHORT_DN))
     if demangled_name != None:
@@ -378,7 +391,7 @@ def generate_operands_string(ops, extra_ops, mutates_dst):
         if len(ops) > 0 and not isinstance(ops[0], str) and ops[0].type == ida_ua.o_reg:
             first_op = op_strs[0]
             # remove the register wrapping around this, we can be sure it's the right type
-            re_match = re.search(r'\((.*?)\)', first_op)
+            re_match = re.search(r"\((.*?)\)", first_op)
             if re_match != None:
                 first_op = re_match.group(1)
             op_strs[0] = "&" + first_op
@@ -532,7 +545,7 @@ def generate_instruction(ea):
     elif category == InstructionCategory.CALL:
         function_name = get_func_name(ops[0].addr)
         if function_name:
-            return f"game::{function_name}(ts, mv);"
+            return f"app::{function_name}(ts, mv);"
         else:
             return f"call(ts, mv, {generate_operands_string(ops, [], False)});"
     else:
@@ -566,7 +579,6 @@ def process_function(f, fva):
         if generated_label and not generated_code:
             f.write("\tUNEXPECTED_EXECUTION();\n")
 
-
         first = False
     f.write("}\n")
 
@@ -577,7 +589,7 @@ def generate_application_code():
     functions = list(idautils.Functions())
 
     with open(
-        os.path.join(BASE_DIRECTORY, "include", "game", "functions.hpp"), "w"
+        os.path.join(BASE_DIRECTORY, "include", "app", "functions.hpp"), "w"
     ) as f:
         function_decls = "\n".join(
             (
@@ -596,7 +608,7 @@ def generate_application_code():
         #include "x86/memory_view.hpp"
         #include "x86/thread_state.hpp"
 
-        namespace game {{
+        namespace app {{
 
         $function_decls
 
@@ -609,7 +621,7 @@ def generate_application_code():
         $function_entries
         }};
 
-        }} // namespace game
+        }} // namespace app
         """
 
         # using textual replacement because dedent craps out if not all lines
@@ -624,7 +636,7 @@ def generate_application_code():
     for chunk_start in range(min(functions), max_function, chunk_interval):
         chunk_end = min(chunk_start + chunk_interval, max_function)
         with open(
-            os.path.join(APPLICATION_FOLDER, f"{chunk_start:X}_{chunk_end:X}.cpp"), "w"
+            os.path.join(FUNCTIONS_DIRECTORY, f"{chunk_start:X}_{chunk_end:X}.cpp"), "w"
         ) as f:
             template = """\
             // clang-format off
@@ -633,10 +645,10 @@ def generate_application_code():
 
             #include "x86/insn.hpp"
             #include "x86/thread_state.hpp"
-            #include "game/stubs.hpp"
-            #include "game/functions.hpp"
+            #include "app/stubs.hpp"
+            #include "app/functions.hpp"
 
-            namespace game {
+            namespace app {
 
             using namespace x86::insn;
 
@@ -645,12 +657,12 @@ def generate_application_code():
             for function in idautils.Functions(chunk_start, chunk_end):
                 process_function(f, function)
                 f.write("\n")
-            f.write("} // namespace game \n")
+            f.write("} // namespace app \n")
 
 
 def generate_stub(mod_name, mod_imports):
     with open(os.path.join(STUBS_DIRECTORY, f"{mod_name}.hpp"), "w") as f:
-        body = "\n".join((f"GAME_UNIMPLEMENTED_STUB({name});" for name in mod_imports))
+        body = "\n".join((f"APP_UNIMPLEMENTED_STUB({name});" for name in mod_imports))
 
         template = """\
         // clang-format off
@@ -660,11 +672,11 @@ def generate_stub(mod_name, mod_imports):
         #include "x86/memory_view.hpp"
         #include "x86/thread_state.hpp"
 
-        namespace game {
+        namespace app {
 
         {body}
 
-        } // namespace game
+        } // namespace app
         """
 
         # using textual replacement because dedent craps out if not all lines
@@ -689,11 +701,7 @@ def generate_stubs():
 def generate_segments():
     import ida_segment
 
-    SEGMENTS_INCLUDE_DIRECTORY = os.path.join(
-        BASE_DIRECTORY, "include", "game", "segments"
-    )
-    SEGMENTS_SRC_DIRECTORY = os.path.join(BASE_DIRECTORY, "src", "game", "segments")
-
+    segment_names = []
     segment_qty = ida_segment.get_segm_qty()
     for i in range(0, segment_qty):
         segment = ida_segment.getnseg(i)
@@ -709,6 +717,7 @@ def generate_segments():
             continue
 
         size = segment.end_ea - segment.start_ea
+        segment_names.append(segment_name)
 
         with open(
             os.path.join(SEGMENTS_INCLUDE_DIRECTORY, f"{segment_name}.hpp"), "w"
@@ -720,12 +729,12 @@ def generate_segments():
             #include <array>
             #include "x86/defs.hpp"
 
-            namespace game::segments::{segment_name} {{
+            namespace app::segments::{segment_name} {{
 
             extern x86::ptr base_address;
             extern std::array<uint8_t, 0x{size:X}> data;
 
-            }} // namespace game
+            }} // namespace app
             """
 
             f.write(textwrap.dedent(template))
@@ -741,15 +750,76 @@ def generate_segments():
             #include <array>
             #include "x86/defs.hpp"
 
-            namespace game::segments::{segment_name} {{
+            namespace app::segments::{segment_name} {{
 
             x86::ptr base_address = 0x{segment.start_ea:X};
             std::array<uint8_t, 0x{size:X}> data = {{{', '.join((f'0x{b:X}' for b in bytes))}}};
 
-            }} // namespace game
+            }} // namespace app
             """
 
             f.write(textwrap.dedent(template))
+
+    # update segment_qty to the actual count before writing our summary files
+    segment_qty = len(segment_names)
+    with open(os.path.join(APP_INCLUDE_DIRECTORY, "segments.hpp"), "w") as f:
+        template = f"""\
+        // clang-format off
+        #pragma once
+
+        #include <string>
+        #include <span>
+
+        #include "x86/defs.hpp"
+
+        namespace app::segments {{
+
+        struct segment_entry {{
+            std::string name;
+            x86::ptr base_address;
+            std::span<uint8_t> data;
+
+            segment_entry(std::string name, x86::ptr base_address, std::span<uint8_t> data) : name(name), base_address(base_address), data(data) {{}}
+        }};
+
+        extern std::array<segment_entry, {segment_qty}> segments;
+
+        }} // namespace app::segments
+        """
+
+        f.write(textwrap.dedent(template))
+
+    with open(os.path.join(APP_SOURCE_DIRECTORY, "segments.cpp"), "w") as f:
+        template = f"""\
+        // clang-format off
+        #include "app/segments.hpp"
+        """
+        f.write(textwrap.dedent(template))
+
+        for segment_name in segment_names:
+            f.write(f'#include "app/segments/{segment_name}.hpp"\n')
+
+        template = f"""\
+
+        namespace app::segments {{
+
+        extern std::array<segment_entry, {segment_qty}> segments = {{
+        """
+        f.write(textwrap.dedent(template))
+
+        lines = [
+            f'    segment_entry("{name}", {name}::base_address, {name}::data),'
+            for name in segment_names
+        ]
+        f.write("\n".join(lines))
+
+        template = f"""\
+
+        }};
+
+        }} // namespace app::segments
+        """
+        f.write(textwrap.dedent(template))
 
 
 def generate_type_string(ops, extra_ops, mutates_dst):
@@ -848,7 +918,10 @@ def generate_instruction_fakes():
     ) as f:
         raw_reps = [
             ("call", ["x86::thread_state* ts", "x86::memory_view* mv", "x86::mem _0"]),
-            ("call", ["x86::thread_state* ts", "x86::memory_view* mv", "x86::reg32 _0"]),
+            (
+                "call",
+                ["x86::thread_state* ts", "x86::memory_view* mv", "x86::reg32 _0"],
+            ),
             ("jmp", ["x86::thread_state* ts", "x86::memory_view* mv", "x86::mem _0"]),
         ]
         for function in idautils.Functions():
@@ -882,7 +955,7 @@ def generate_instruction_fakes():
         f.write(textwrap.dedent(template))
         for rep in reps:
             f.write(rep + "\n")
-        f.write("\n\n}} // namespace x86::insn\n")
+        f.write("\n\n} // namespace x86::insn\n")
 
 
 if GENERATE_APPLICATION_CODE:

@@ -1534,4 +1534,4 @@ inline void xorps(x86::reg128* _0, x86::reg128 _1) {
 }
 
 
-}} // namespace x86::insn
+} // namespace x86::insn

@@ -32,3 +32,11 @@
 *.app
 
 build
+
+src/app/functions
+src/app/segments
+src/app/segments.cpp
+
+include/app/functions.hpp
+include/app/segments
+include/app/segments.hpp
